@@ -1,5 +1,7 @@
 using Test
 using TwoBit
+using BioSequences
+using BioGenerics
 using FormatSpecimens
 
 @testset "TwoBit" begin
@@ -26,8 +28,8 @@ using FormatSpecimens
         for record in stream
             @test hassequence(record) == TwoBit.hassequence(record) == true
             a = TwoBit.sequence(ReferenceSequence, record)
-            b = TwoBit.sequence(DNASequence, record)
-            @test TwoBit.sequence(ReferenceSequence, record) == TwoBit.sequence(DNASequence, record)
+            b = TwoBit.sequence(LongDNASeq, record)
+            @test TwoBit.sequence(ReferenceSequence, record) == TwoBit.sequence(LongDNASeq, record)
         end
         close(stream)
 
