@@ -1,4 +1,4 @@
-# <img src="./sticker.svg" width="30%" align="right" /> 
+# TwoBit <img src="./sticker.svg" width="30%" align="right" /> 
 
 [![Latest Release](https://img.shields.io/github/release/BioJulia/TwoBit.jl.svg)](https://github.com/BioJulia/TwoBit.jl/releases/latest)
 [![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/BioJulia/TwoBit.jl/blob/master/LICENSE) 
