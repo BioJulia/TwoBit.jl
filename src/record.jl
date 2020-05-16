@@ -88,7 +88,11 @@ end
 
 # Accessors
 # ---------
+"""
+    hassequence(record::Record)
 
+Check that the TwoBit.Record `record` contains a sequence.
+"""
 function hassequence(record::Record)
     return isfilled(record)
 end
