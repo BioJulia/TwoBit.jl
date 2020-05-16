@@ -13,9 +13,9 @@ makedocs(
     pages = [
         "Home" => "index.md",
         "Manual" => [
-            "TwoBit Records" => "man/records.md",
             "Reading files" => "man/reading.md",
-            "Writing files" => "man/writing.md"
+            "Writing files" => "man/writing.md",
+            "TwoBit Records" => "man/records.md"
         ],
     ],
     authors = "Ben J. Ward."
