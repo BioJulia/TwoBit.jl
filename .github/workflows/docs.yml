@@ -22,10 +22,7 @@ jobs:
               with:
                   version: ${{ matrix.julia-version }}
             - name: Install dependencies
-              run: |
-                julia -e 'using Pkg.Registry; Registry.add(Registry.RegistrySpec(url = "https://github.com/BioJulia/BioJuliaRegistry.git"))'
-                julia -e 'using Pkg.Registry; Registry.add(Registry.RegistrySpec(url = "https://github.com/JuliaRegistries/General.git"))'
-                julia --project=docs -e 'using Pkg; Pkg.add(PackageSpec(path="./")); Pkg.instantiate(); Pkg.update()'
+              run: julia --project=docs -e 'using Pkg; Pkg.add(PackageSpec(path="./")); Pkg.instantiate(); Pkg.update()'
             - name: Build and deploy
               env:
                   DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
