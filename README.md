@@ -5,7 +5,6 @@
 [![Stable documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://biojulia.github.io/TwoBit.jl/stable)
 [![Latest documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://biojulia.github.io/TwoBit.jl/dev/)
 [![Pkg Status](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Chat](https://img.shields.io/gitter/room/BioJulia/TwoBit.svg)](https://gitter.im/BioJulia/TwoBit.jl)
 
 
 ## Description
@@ -80,6 +79,4 @@ Your logo will show up here with a link to your website.
 
 ## Questions?
 
-If you have a question about contributing or using BioJulia software, come
-on over and chat to us on [Gitter](https://gitter.im/BioJulia/General), or you can try the
-[Bio category of the Julia discourse site](https://discourse.julialang.org/c/domain/bio).
+If you have a question about contributing or using BioJulia software, come on over and chat to us on [the Julia Slack workspace](https://julialang.org/slack/), or you can try the [Bio category of the Julia discourse site](https://discourse.julialang.org/c/domain/bio).
