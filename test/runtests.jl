@@ -3,6 +3,7 @@ using TwoBit
 using BioSequences
 using BioGenerics
 using FormatSpecimens
+using Documenter
 
 @testset "TwoBit" begin
     buffer = IOBuffer()
@@ -51,12 +52,16 @@ using FormatSpecimens
 
         return expected_entries == read_entries
     end
-    
+
     path = path_of_format("2bit")
     goodfiles = list_valid_specimens("2bit")
-    
+
     for specimen in goodfiles
         filepath = joinpath(path, filename(specimen))
         @test check_2bit_parse(filepath)
     end
+
+    # Include doctests.
+    DocMeta.setdocmeta!(TwoBit, :DocTestSetup, :(using TwoBit); recursive=true)
+    doctest(TwoBit; manual = false)
 end
