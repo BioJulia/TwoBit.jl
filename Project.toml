@@ -1,6 +1,6 @@
 name = "TwoBit"
 uuid = "75842c30-9b2d-11e9-3f58-f17fe2b89951"
-authors = ["Ben J. Ward <benjward@protonmail.com>"]
+authors = ["Sabrina Jaye Ward <sabrinajward@protonmail.com>"]
 version = "0.1.0"
 
 [deps]

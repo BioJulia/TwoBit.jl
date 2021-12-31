@@ -206,15 +206,12 @@ function memcmp(p1::Ptr, p2::Ptr, n::Integer)
 end
 
 """
-`WriteRecord{S,T}` is a type holding a named sequence of type `S`, along with
-a mask.
+    `WriteRecord{S,T}` is a type holding a named sequence of type `S`, along with a mask.
 
-Mostly to make writing 2bit sequences painless with the depreceation of
-SeqRecord.
+Mostly to make writing 2bit sequences painless with the depreceation of SeqRecord.
 I can't see this existing much beyond the addition of masked sequences.
-Creates a sequence record suitable for writing to 2bit, in a similar way that
-FASTA and FASTQ records are created before being written to file. i.e. by calling
-a `Record` method on a name, some sequence, and some masks.
+Creates a sequence record suitable for writing to 2bit, in a similar way that FASTA and FASTQ records are created before being written to file.
+i.e. by calling a `Record` method on a name, some sequence, and some masks.
 """
 mutable struct WriteRecord{S<:BioSequences.BioSequence}
     name::String
@@ -223,12 +220,11 @@ mutable struct WriteRecord{S<:BioSequences.BioSequence}
 end
 
 """
-Record(name::AbstractString, seq::BioSequences.BioSequence, masks::Union{Vector{UnitRange{Int}}, Nothing} = nothing)
+    Record(name::AbstractString, seq::BioSequences.BioSequence, masks::Union{Vector{UnitRange{Int}}, Nothing} = nothing)
 
 Prepare a record for writing to a 2bit formatted file.
 
-Needs a `name`, a `sequence`, and (optionally) `masks`: a vector of
-ranges that delineate masked regions of sequence.
+Needs a `name`, a `sequence`, and (optionally) `masks`: a vector of ranges that delineate masked regions of sequence.
 """
 function Record(name::AbstractString,
                 seq::BioSequences.BioSequence,
