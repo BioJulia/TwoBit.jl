@@ -10,17 +10,13 @@
 
 TwoBit.jl provides I/O and utilities for manipulating 2Bit sequence data files.
 
-2Bit is a binary file format designed for storing a genome consists of multiple
-chromosomal sequences.
+2Bit is a binary file format designed for storing a genome consists of multiple chromosomal sequences.
 
-The reading speed is often an order of magnitude faster than that of FASTA and
-the file size is smaller.
+The reading speed is often an order of magnitude faster than that of FASTA and the file size is smaller.
 
-However, since the .2bit file format is specialized for genomic sequences, it
-cannot store either RNA or amino acid sequences.
+However, since the .2bit file format is specialized for genomic sequences, it cannot store either RNA or amino acid sequences.
 
-For storage of sequencing read datasets, compressed and indexed on disk, head
-over to [ReadDatastores.jl](https://github.com/BioJulia/ReadDatastores.jl)
+For storage of sequencing read datasets, compressed and indexed on disk, head over to [ReadDatastores.jl](https://github.com/BioJulia/ReadDatastores.jl)
 
 ## Installation
 
@@ -47,20 +43,16 @@ TwoBit is tested against Julia `1.X` on Linux, OS X, and Windows.
 
 ## Contributing
 
-We appreciate contributions from users including reporting bugs, fixing
-issues, improving performance and adding new features.
+We appreciate contributions from users including reporting bugs, fixing issues, improving performance and adding new features.
 
-Take a look at the [contributing files](https://github.com/BioJulia/Contributing)
-detailed contributor and maintainer guidelines, and code of conduct.
+Take a look at the [contributing files](https://github.com/BioJulia/Contributing) detailed contributor and maintainer guidelines, and code of conduct.
 
 
 ### Financial contributions
 
-We also welcome financial contributions in full transparency on our
-[open collective](https://opencollective.com/biojulia).
-Anyone can file an expense. If the expense makes sense for the development
-of the community, it will be "merged" in the ledger of our open collective by
-the core contributors and the person who filed the expense will be reimbursed.
+We also welcome financial contributions in full transparency on our [open collective](https://opencollective.com/biojulia).
+Anyone can file an expense.
+If the expense makes sense for the development of the community, it will be "merged" in the ledger of our open collective by the core contributors and the person who filed the expense will be reimbursed.
 
 
 ## Backers & Sponsors
@@ -71,8 +63,7 @@ Love our work and community? [Become a backer](https://opencollective.com/biojul
 
 [![backers](https://opencollective.com/biojulia/backers.svg?width=890)](https://opencollective.com/biojulia#backers)
 
-Does your company use BioJulia? Help keep BioJulia feature rich and healthy by
-[sponsoring the project](https://opencollective.com/biojulia#sponsor)
+Does your company use BioJulia? Help keep BioJulia feature rich and healthy by [sponsoring the project](https://opencollective.com/biojulia#sponsor).
 Your logo will show up here with a link to your website.
 
 [![](https://opencollective.com/biojulia/sponsor/0/avatar.svg)](https://opencollective.com/biojulia/sponsor/0/website)
