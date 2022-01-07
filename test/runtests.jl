@@ -28,9 +28,7 @@ using Documenter
         # read from a stream
         for record in stream
             @test hassequence(record) == TwoBit.hassequence(record) == true
-            a = TwoBit.sequence(ReferenceSequence, record)
-            b = TwoBit.sequence(LongDNASeq, record)
-            @test TwoBit.sequence(ReferenceSequence, record) == TwoBit.sequence(LongDNASeq, record)
+            @test TwoBit.sequence(record) == TwoBit.sequence(BioSequences.LongDNA{4}, record)
         end
         close(stream)
 
