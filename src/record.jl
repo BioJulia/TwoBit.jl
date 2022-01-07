@@ -102,27 +102,18 @@ end
 
 Get the sequence of `record` as `S`.
 
-`S` can be either `BioSequences.ReferenceSequence` or `BioSequences.DNASequence`.
-If `S` is omitted, the default type is `BioSequences.ReferenceSequence`.
+If `S` is omitted, the default type is `BioSequences.LongDNA{4}`.
+
+Currently, the only provided implementation for `S` is `BioSequences.LongDNA{4}`.
 """
 function sequence(record::Record)
-    return sequence(BioSequences.ReferenceSequence, record)
+    return sequence(BioSequences.LongDNA{4}, record)
 end
 
-function sequence(::Type{BioSequences.ReferenceSequence}, record::Record)
-    checkfilled(record)
-    data = decode_sequence(record.packeddna, record.dnasize, BioSequences.BitsPerSymbol{2}(), twobit2refseq_table)
-    nmask = falses(record.dnasize)
-    for i in 1:record.blockcount
-        nmask[record.blockstarts[i] .+ (1:record.blocksizes[i])] .= true
-    end
-    return BioSequences.ReferenceSequence(data, BioSequences.NMask(nmask), 1:record.dnasize)
-end
-
-function sequence(::Type{BioSequences.LongDNASeq}, record::Record)
+function sequence(::Type{BioSequences.LongDNA{4}}, record::Record)
     checkfilled(record)
     data = decode_sequence(record.packeddna, record.dnasize, BioSequences.BitsPerSymbol{4}(), twobit2dnaseq_table)
-    seq = BioSequences.LongDNASeq(data, 1:record.dnasize, false)
+    seq = BioSequences.LongDNA{4}(data, UInt(record.dnasize))
     for i in 1:record.blockcount
         for j in record.blockstarts[i] .+ (1:record.blocksizes[i])
             seq[j] = BioSequences.DNA_N
@@ -167,26 +158,12 @@ function decode_sequence(packeddna::Vector{UInt8}, seqlen::UInt32, nbits::BioSeq
     return data
 end
 
-const twobit2refseq_table = let
-    # T: 00, C: 01, A: 10, G: 11
-    f(x) = x == 0b00 ? UInt64(3) :
-           x == 0b01 ? UInt64(1) :
-           x == 0b10 ? UInt64(0) :
-           x == 0b11 ? UInt64(2) : error()
-    tcag = 0b00:0b11
-    tbl = UInt64[]
-    for x in tcag, y in tcag, z in tcag, w in tcag
-        push!(tbl, f(x) | f(y) << 2 | f(z) << 4 | f(w) << 6)
-    end
-    tbl
-end
-
 const twobit2dnaseq_table = let
     # T: 00, C: 01, A: 10, G: 11
-    f(x) = x == 0b00 ? convert(UInt64, BioSequences.DNA_T) :
-           x == 0b01 ? convert(UInt64, BioSequences.DNA_C) :
-           x == 0b10 ? convert(UInt64, BioSequences.DNA_A) :
-           x == 0b11 ? convert(UInt64, BioSequences.DNA_G) : error()
+    f(x) = x == 0b00 ? BioSequences.encode(BioSequences.DNAAlphabet{4}(), BioSequences.DNA_T) :
+           x == 0b01 ? BioSequences.encode(BioSequences.DNAAlphabet{4}(), BioSequences.DNA_C) :
+           x == 0b10 ? BioSequences.encode(BioSequences.DNAAlphabet{4}(), BioSequences.DNA_A) :
+           x == 0b11 ? BioSequences.encode(BioSequences.DNAAlphabet{4}(), BioSequences.DNA_G) : error()
     tcag = 0b00:0b11
     tbl = UInt64[]
     for x in tcag, y in tcag, z in tcag, w in tcag
