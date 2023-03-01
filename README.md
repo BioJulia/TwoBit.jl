@@ -1,6 +1,7 @@
 # TwoBit <img src="./sticker.svg" width="30%" align="right" />
 
 [![Latest Release](https://img.shields.io/github/release/BioJulia/TwoBit.jl.svg)](https://github.com/BioJulia/TwoBit.jl/releases/latest)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7686751.svg)](https://doi.org/10.5281/zenodo.7686751)
 [![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/BioJulia/TwoBit.jl/blob/master/LICENSE)
 [![Stable documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://biojulia.github.io/TwoBit.jl/stable)
 [![Latest documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://biojulia.github.io/TwoBit.jl/dev/)
