@@ -11,13 +11,15 @@ mutable struct Writer{T<:IO} <: BioGenerics.IO.AbstractWriter
 end
 
 """
-    TwoBitWriter(output::IO, names::AbstractVector)
+    TwoBitWriter(output::IO, names::AbstractVector; collapse_ambiguous = false)
 
 Create a data writer of the 2bit file format.
 
 # Arguments
 * `output`: data sink
 * `names`: a vector of sequence names written to `output`
+* `collapse_ambiguous`: Set to `true` if your input sequence has partial ambiguities (W/S/R/Y, etc.) and you can
+tolerate converting them to `N`. The format does not support partial ambiguities and will error otherwise.
 """
 function Writer(output::IO, names::AbstractVector)
     writer = Writer(output, names, falses(length(names)))
@@ -73,7 +75,7 @@ function update_offset(writer::Writer, seqname, seqoffset)
     end
 end
 
-function Base.write(writer::Writer, record::WriteRecord)
+function Base.write(writer::Writer, record::WriteRecord; collapse_ambiguous = false)
     i = findfirst(isequal(record.name), writer.names)
     if i == 0
         error("sequence \"", record.name, "\" doesn't exist in the writing list")
@@ -86,7 +88,7 @@ function Base.write(writer::Writer, record::WriteRecord)
 
     n = 0
     n += write(output, UInt32(length(record.seq)))
-    n += write_n_blocks(output, record.seq)
+    n += write_n_blocks(output, record.seq; collapse_ambiguous)
     n += write_masked_blocks(output, record.masks)
     n += write(output, UInt32(0))  # reserved bytes
     n += write_twobit_sequence(output, record.seq)
@@ -95,13 +97,13 @@ function Base.write(writer::Writer, record::WriteRecord)
     return n
 end
 
-function make_n_blocks(seq)
+function make_n_blocks(seq; collapse_ambiguous = false)
     starts = UInt32[]
     sizes = UInt32[]
     i = 1
     while i ≤ lastindex(seq)
         nt = seq[i]
-        if nt == BioSequences.DNA_N
+        if nt == BioSequences.DNA_N || (collapse_ambiguous && BioSequences.isambiguous(nt))
             start = i - 1  # 0-based index
             push!(starts, start)
             while i ≤ lastindex(seq) && seq[i] == BioSequences.DNA_N
@@ -117,8 +119,8 @@ function make_n_blocks(seq)
     return starts, sizes
 end
 
-function write_n_blocks(output, seq)
-    blockstarts, blocksizes = make_n_blocks(seq)
+function write_n_blocks(output, seq; collapse_ambiguous = false)
+    blockstarts, blocksizes = make_n_blocks(seq; collapse_ambiguous)
     @assert length(blockstarts) == length(blocksizes)
     n = 0
     n += write(output, UInt32(length(blockstarts)))

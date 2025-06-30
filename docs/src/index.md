@@ -10,7 +10,7 @@
 
 TwoBit.jl provides I/O and utilities for manipulating 2Bit sequence data files.
 
-2Bit is a binary file format designed for storing a genome consists of multiple chromosomal sequences.
+2Bit is a binary file format (described [here](https://genome.ucsc.edu/FAQ/FAQformat.html#format7)) designed for storing a genome that consists of multiple chromosomal sequences.
 
 The reading speed is often an order of magnitude faster than that of FASTA and the file size is smaller.
 
