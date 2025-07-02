@@ -11,7 +11,7 @@ mutable struct Writer{T<:IO} <: BioGenerics.IO.AbstractWriter
 end
 
 """
-    TwoBitWriter(output::IO, names::AbstractVector)
+    TwoBit.Writer(output::IO, names::AbstractVector)
 
 Create a data writer of the 2bit file format.
 
