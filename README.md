@@ -10,7 +10,7 @@
 
 ## Description
 
-TwoBit provides I/O and utilities for manipulating 2Bit sequence data files.
+TwoBit provides I/O and utilities for manipulating 2Bit sequence data files. The 2Bit format is described [here](https://genome.ucsc.edu/FAQ/FAQformat.html#format7).
 
 
 ## Installation
